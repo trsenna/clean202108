@@ -16,10 +16,10 @@ class CustomerStoreHandler implements CustomerStoreHandlerInterface
         // $customer->name = $customerStore->name;
         // $customer->save();
 
-        event(new CustomerStored($customerId->identity, $customerStore->name));
+        event(new CustomerStored($customerId->value(), $customerStore->name));
 
         return new CustomerStoreResponse(
-            $customerId->identity,
+            $customerId->value(),
             $customerStore->name
         );
     }

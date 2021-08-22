@@ -2,14 +2,10 @@
 
 namespace Clean\Customers\DomainModel;
 
-use Illuminate\Database\Eloquent\Model;
+use Clean\Foundation\Eloquent\EntityInterface;
 
-class Customer extends Model
+interface Customer extends EntityInterface
 {
-    protected $table = 'customers';
-
-    public function __construct(CustomerId $customerId)
-    {
-        $this->id = $customerId->identity;
-    }
+    public function identity(): CustomerId;
+    public function getName(): string;
 }

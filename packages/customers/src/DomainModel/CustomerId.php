@@ -2,24 +2,12 @@
 
 namespace Clean\Customers\DomainModel;
 
-use Illuminate\Support\Str;
+use Clean\Foundation\AbstractIdentity;
 
-final class CustomerId
+final class CustomerId extends AbstractIdentity
 {
-    public $identity;
-
-    private function __construct(string $identity)
+    protected function __construct(string $value)
     {
-        $this->identity = $identity;
-    }
-
-    public static function of(string $identity)
-    {
-        return new static($identity);
-    }
-
-    public static function next()
-    {
-        return static::of(Str::uuid());;
+        parent::__construct($value);
     }
 }
