@@ -3,18 +3,24 @@
 namespace App\Clean\Application\Commands;
 
 use App\Clean\Application\CustomerStored;
+use App\Clean\DomainModel\Customer;
+use App\Clean\DomainModel\CustomerId;
 use Illuminate\Support\Str;
 
 class CustomerStoreHandler implements CustomerStoreHandlerInterface
 {
     public function execute(CustomerStore $customerStore): CustomerStoreResponse
     {
-        $id = Str::uuid();
+        $customerId = CustomerId::next();
 
-        event(new CustomerStored($id, $customerStore->name));
+        $customer = new Customer($customerId);
+        $customer->name = $customerStore->name;
+        $customer->save();
+
+        event(new CustomerStored($customerId->identity, $customerStore->name));
 
         return new CustomerStoreResponse(
-            $id,
+            $customerId->identity,
             $customerStore->name
         );
     }
