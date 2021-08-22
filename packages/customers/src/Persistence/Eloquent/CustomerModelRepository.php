@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Customers\Infrastructure\Eloquent;
+namespace Clean\Customers\Persistence\Eloquent;
 
 use Clean\Customers\Domain\Model\Customer;
 use Clean\Customers\Domain\Model\CustomerRepository;

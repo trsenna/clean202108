@@ -8,8 +8,8 @@ use Clean\Customers\Application\Queries\CustomerListHandler;
 use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
 use Clean\Customers\Domain\Model\CustomerFactory;
 use Clean\Customers\Domain\Model\CustomerRepository;
-use Clean\Customers\Infrastructure\Eloquent\CustomerModelFactory;
-use Clean\Customers\Infrastructure\Eloquent\CustomerModelRepository;
+use Clean\Customers\Persistence\Eloquent\CustomerModelFactory;
+use Clean\Customers\Persistence\Eloquent\CustomerModelRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
