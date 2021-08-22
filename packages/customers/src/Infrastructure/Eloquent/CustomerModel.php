@@ -3,7 +3,7 @@
 namespace Clean\Customers\Infrastructure\Eloquent;
 
 use Clean\Customers\Domain\Model\Customer;
-use Clean\Foundation\AbstractModel;
+use Clean\Foundation\Eloquent\AbstractModel;
 
 final class CustomerModel extends AbstractModel implements Customer
 {

@@ -3,24 +3,30 @@
 namespace Clean\Customers\Application\Commands;
 
 use Clean\Customers\Application\CustomerStored;
-use Clean\Customers\DomainModel\Customer;
-use Clean\Customers\DomainModel\CustomerId;
+use Clean\Customers\Domain\Model\CustomerFactory;
+use Clean\Customers\Domain\Model\CustomerRepository;
 
 class CustomerStoreHandler implements CustomerStoreHandlerInterface
 {
+    private CustomerFactory $customerFactory;
+    private CustomerRepository $customerRepository;
+
+    public function __construct(CustomerFactory $customerFactory, CustomerRepository $customerRepository)
+    {
+        $this->customerFactory = $customerFactory;
+        $this->customerRepository = $customerRepository;
+    }
+
     public function execute(CustomerStore $customerStore): CustomerStoreResponse
     {
-        $customerId = CustomerId::next();
+        $customer = $this->customerFactory->create($customerStore->name);
+        $this->customerRepository->add($customer);
 
-        // $customer = new Customer($customerId);
-        // $customer->name = $customerStore->name;
-        // $customer->save();
-
-        event(new CustomerStored($customerId->value(), $customerStore->name));
+        event(new CustomerStored($customer->identity()->value(), $customer->getName()));
 
         return new CustomerStoreResponse(
-            $customerId->value(),
-            $customerStore->name
+            $customer->identity()->value(),
+            $customer->getName()
         );
     }
 }

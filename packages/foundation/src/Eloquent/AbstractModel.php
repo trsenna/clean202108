@@ -1,20 +1,23 @@
 <?php
 
-namespace Clean\Foundation;
+namespace Clean\Foundation\Eloquent;
 
 use Clean\Foundation\Eloquent\EntityInterface;
+use Clean\Foundation\IdentityInterface;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractModel extends Model implements EntityInterface
 {
+    protected $identity;
+
     public function setIdentity(IdentityInterface $identity): void
     {
-        $this->id = $identity->value();
+        $this->identity = $identity;
     }
 
     public function identity(): IdentityInterface
     {
-        return IdentityFactory::of($this->id);
+        return $this->identity;
     }
 
     public function eloquent(): Model
