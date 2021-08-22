@@ -6,6 +6,7 @@ use App\Clean\Application\Commands\CustomerStore;
 use App\Clean\Application\Commands\CustomerStoreHandlerInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StoreController extends Controller
 {
@@ -18,7 +19,11 @@ class StoreController extends Controller
 
     public function __invoke(Request $request)
     {
-        $customerStore = new CustomerStore($request->input('name'));
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $customerStore = new CustomerStore($validated['name']);
         $customerStoreResponse = $this->customerStoreHandler->execute($customerStore);
 
         return response()->json([
