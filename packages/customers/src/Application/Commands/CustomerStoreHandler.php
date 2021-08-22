@@ -12,9 +12,9 @@ class CustomerStoreHandler implements CustomerStoreHandlerInterface
     {
         $customerId = CustomerId::next();
 
-        $customer = new Customer($customerId);
-        $customer->name = $customerStore->name;
-        $customer->save();
+        // $customer = new Customer($customerId);
+        // $customer->name = $customerStore->name;
+        // $customer->save();
 
         event(new CustomerStored($customerId->identity, $customerStore->name));
 
