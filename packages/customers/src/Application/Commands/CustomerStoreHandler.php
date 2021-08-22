@@ -20,7 +20,7 @@ class CustomerStoreHandler implements CustomerStoreHandlerInterface
     public function execute(CustomerStore $customerStore): CustomerStoreResponse
     {
         $customer = $this->customerFactory->create($customerStore->name);
-        // $this->customerRepository->add($customer);
+        $this->customerRepository->add($customer);
 
         event(new CustomerStored($customer->identity()->value(), $customer->getName()));
 

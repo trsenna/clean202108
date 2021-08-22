@@ -21,7 +21,7 @@ class CustomerEditHandler implements CustomerEditHandlerInterface
         $customer = $this->customerRepository->ofIdentity($customerIdentity);
 
         $customer->name = $command->name;
-        $this->customerRepository->add($customer);
+        $this->customerRepository->merge($customer);
 
         event(new CustomerEdited($customer->identity()->value(), $customer->getName()));
 

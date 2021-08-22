@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Customers\DestroyController;
+use App\Http\Controllers\Customers\EditController;
 use App\Http\Controllers\Customers\IndexController;
 use App\Http\Controllers\Customers\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('customers', IndexController::class);
 Route::post('customers', StoreController::class);
+Route::patch('customers/{id}', EditController::class);
+Route::delete('customers/{id}', DestroyController::class);

@@ -16,13 +16,9 @@ class DestroyController extends Controller
         $this->customerDestroyHandler = $customerDestroyHandler;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(string $id)
     {
-        $validated = $request->validate([
-            'id' => 'required',
-        ]);
-
-        $customerDestroy = new CustomerDestroy($validated['id']);
+        $customerDestroy = new CustomerDestroy($id);
         $this->customerDestroyHandler->execute($customerDestroy);
 
         return response()->json([

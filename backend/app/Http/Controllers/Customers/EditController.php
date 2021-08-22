@@ -16,14 +16,13 @@ class EditController extends Controller
         $this->customerEditHandler = $customerEditHandler;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, string $id)
     {
         $validated = $request->validate([
-            'id' => 'required',
             'name' => 'required',
         ]);
 
-        $customerEdit = new CustomerEdit($validated['id'], $validated['name']);
+        $customerEdit = new CustomerEdit($id, $validated['name']);
         $customerEditResponse = $this->customerEditHandler->execute($customerEdit);
 
         return response()->json([
