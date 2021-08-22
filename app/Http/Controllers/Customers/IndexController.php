@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Customers;
 
-use App\Clean\Application\Queries\CustomerList;
-use App\Clean\Application\Queries\CustomerListHandlerInterface;
+use Clean\Customers\Application\Queries\CustomerList;
+use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller

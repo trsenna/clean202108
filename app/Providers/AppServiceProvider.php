@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Clean\Application\Commands\CustomerStoreHandler;
-use App\Clean\Application\Commands\CustomerStoreHandlerInterface;
-use App\Clean\Application\Queries\CustomerListHandler;
-use App\Clean\Application\Queries\CustomerListHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerStoreHandler;
+use Clean\Customers\Application\Commands\CustomerStoreHandlerInterface;
+use Clean\Customers\Application\Queries\CustomerListHandler;
+use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

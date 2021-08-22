@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Customers;
 
-use App\Clean\Application\Commands\CustomerStore;
-use App\Clean\Application\Commands\CustomerStoreHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerStore;
+use Clean\Customers\Application\Commands\CustomerStoreHandlerInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class StoreController extends Controller
 {
