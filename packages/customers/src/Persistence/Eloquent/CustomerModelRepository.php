@@ -19,6 +19,12 @@ final class CustomerModelRepository implements CustomerRepository
         $eloquentModel->save();
     }
 
+    public function merge(Customer $customer): void
+    {
+        $eloquentModel = $customer->eloquent();
+        $eloquentModel->save();
+    }
+
     public function remove(Customer $customer): void
     {
         $eloquentModel = $customer->eloquent();
