@@ -1,0 +1,16 @@
+{
+	"name": "Laravel-Clean-202008",
+	"dockerComposeFile": "docker-compose.yml",
+	"workspaceFolder": "/workspace",
+	"service": "app",
+	"settings": {
+		"php.validate.executablePath": "/usr/local/bin/php"
+	},
+	"extensions": [
+		"bmewburn.vscode-intelephense-client",
+		"esbenp.prettier-vscode",
+		"felixfbecker.php-debug",
+		"mrmlnc.vscode-apache"
+	],
+	"remoteUser": "vscode"
+}
