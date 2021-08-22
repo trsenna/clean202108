@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Customers\DomainModel;
+namespace Clean\Customers\Domain\Model;
 
 interface CustomerFactory
 {

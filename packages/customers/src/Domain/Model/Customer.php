@@ -1,11 +1,10 @@
 <?php
 
-namespace Clean\Customers\DomainModel;
+namespace Clean\Customers\Domain\Model;
 
 use Clean\Foundation\Eloquent\EntityInterface;
 
 interface Customer extends EntityInterface
 {
-    public function identity(): CustomerId;
     public function getName(): string;
 }
