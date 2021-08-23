@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Customers\Application\Commands;
+namespace Clean\Customers\Application\Commands\CustomerStore;
 
 use Clean\Customers\Application\CustomerStored;
 use Clean\Customers\Domain\Model\CustomerFactory;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Customers\Application\Commands;
+namespace Clean\Customers\Application\Commands\CustomerStore;
 
 class CustomerStore
 {

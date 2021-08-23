@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Customers;
 
-use Clean\Customers\Application\Commands\CustomerDestroy;
-use Clean\Customers\Application\Commands\CustomerDestroyHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroy;
+use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

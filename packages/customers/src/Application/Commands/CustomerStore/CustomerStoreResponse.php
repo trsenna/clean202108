@@ -1,8 +1,8 @@
 <?php
 
-namespace Clean\Customers\Application\Commands;
+namespace Clean\Customers\Application\Commands\CustomerStore;
 
-class CustomerEdit
+class CustomerStoreResponse
 {
     public string $id;
     public string $name;

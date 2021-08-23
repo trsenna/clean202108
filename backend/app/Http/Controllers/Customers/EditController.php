@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Customers;
 
-use Clean\Customers\Application\Commands\CustomerEdit;
-use Clean\Customers\Application\Commands\CustomerEditHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerEdit\CustomerEdit;
+use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandlerInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

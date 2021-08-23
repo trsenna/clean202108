@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Customers\Application\Commands;
+namespace Clean\Customers\Application\Commands\CustomerEdit;
 
 use Clean\Customers\Application\CustomerEdited;
 use Clean\Customers\Domain\Model\CustomerRepository;
