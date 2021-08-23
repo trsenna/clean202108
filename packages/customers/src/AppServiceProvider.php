@@ -2,16 +2,37 @@
 
 namespace Clean\Customers;
 
+use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandler;
+use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandler;
+use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandler;
+use Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandlerInterface;
+use Clean\Customers\Application\Queries\CustomerListHandler;
+use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
+use Clean\Customers\Domain\Model\CustomerFactory;
+use Clean\Customers\Domain\Model\CustomerRepository;
+use Clean\Customers\Persistence\Eloquent\CustomerModelFactory;
+use Clean\Customers\Persistence\Eloquent\CustomerModelRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public $singletons = [
-        \Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface::class => \Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandler::class,
-        \Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandlerInterface::class => \Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandler::class,
-        \Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandlerInterface::class => \Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandler::class,
-        \Clean\Customers\Application\Queries\CustomerListHandlerInterface::class => \Clean\Customers\Application\Queries\CustomerListHandler::class,
-        \Clean\Customers\Domain\Model\CustomerFactory::class => \Clean\Customers\Persistence\Eloquent\CustomerModelFactory::class,
-        \Clean\Customers\Domain\Model\CustomerRepository::class => \Clean\Customers\Persistence\Eloquent\CustomerModelRepository::class,
-    ];
+    public function boot()
+    {
+        $this->app->bind(CustomerFactory::class, CustomerModelFactory::class);
+        $this->app->bind(CustomerRepository::class, CustomerModelRepository::class);
+
+        call_user_func(function () {
+            // register command handlers
+            $this->app->bind(CustomerDestroyHandlerInterface::class, CustomerDestroyHandler::class);
+            $this->app->bind(CustomerEditHandlerInterface::class, CustomerEditHandler::class);
+            $this->app->bind(CustomerStoreHandlerInterface::class, CustomerStoreHandler::class);
+        });
+
+        call_user_func(function () {
+            // register query handlers
+            $this->app->bind(CustomerListHandlerInterface::class, CustomerListHandler::class);
+        });
+    }
 }
