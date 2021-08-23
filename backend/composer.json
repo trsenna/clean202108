@@ -28,7 +28,9 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
+            "Clean\\Contracts\\": "../packages/contracts/src/",
             "Clean\\Customers\\": "../packages/customers/src/",
+            "Clean\\Events\\": "../packages/events/src/",
             "Clean\\Foundation\\": "../packages/foundation/src/"
         }
     },
