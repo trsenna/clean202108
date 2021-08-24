@@ -180,6 +180,7 @@ return [
          */
         Clean\Customers\AppServiceProvider::class,
         Clean\Customers\EventServiceProvider::class,
+        Clean\Events\AppServiceProvider::class,
 
     ],
 

@@ -4,7 +4,6 @@ namespace Clean\Customers;
 
 use Clean\Contracts\Customers\Domain\Model\CustomerFactory;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
-use Clean\Contracts\Foundation\Domain\Model\IdentityFactory;
 use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandler;
 use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface;
 use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandler;
@@ -15,7 +14,6 @@ use Clean\Customers\Application\Queries\CustomerListHandler;
 use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
 use Clean\Customers\Domain\Model\CustomerModelFactory;
 use Clean\Customers\Domain\Model\CustomerModelRepository;
-use Clean\Foundation\Domain\Model\UuidIdentityFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

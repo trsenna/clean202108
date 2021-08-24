@@ -2,7 +2,9 @@
 
 namespace Clean\Events\Customers\Application;
 
-class CustomerStored
+use Clean\Contracts\Events\Application\Event;
+
+class CustomerStored implements Event
 {
     public string $id;
     public string $name;
