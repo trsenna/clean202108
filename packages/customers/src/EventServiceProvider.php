@@ -2,9 +2,9 @@
 
 namespace Clean\Customers;
 
-use Clean\Customers\Application\CustomerDestroyed;
-use Clean\Customers\Application\CustomerEdited;
-use Clean\Customers\Application\CustomerStored;
+use Clean\Events\Customers\Application\CustomerDestroyed;
+use Clean\Events\Customers\Application\CustomerEdited;
+use Clean\Events\Customers\Application\CustomerStored;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;

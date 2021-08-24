@@ -11,9 +11,9 @@ final class CustomerModelFactory implements CustomerFactory
     {
         $customerModel = new CustomerModel();
         $customerModelIdentityFactory = $customerModel->identityFactory();
+        $customerModel->setIdentity($customerModelIdentityFactory->next());
 
         $customerModel->fill([
-            'id' => $customerModelIdentityFactory->next(),
             'name' => strval($values['name']),
         ]);
 

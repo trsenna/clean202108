@@ -11,6 +11,8 @@ final class CustomerModel extends AbstractModel implements Customer
 {
     protected $table = 'customers';
 
+    protected $fillable = ['name'];
+
     public function identityFactory(): IdentityFactory
     {
         return new UuidIdentityFactory();

@@ -19,7 +19,7 @@ abstract class AbstractModelRepository implements Repository
         return $eloquentModel->save();
     }
 
-    public function remove(Entity $entity): bool|null
+    public function remove(Entity $entity): ?bool
     {
         $eloquentModel = $entity->eloquent();
         return $eloquentModel->delete();
