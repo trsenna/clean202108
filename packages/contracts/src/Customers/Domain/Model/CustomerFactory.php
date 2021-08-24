@@ -2,9 +2,7 @@
 
 namespace Clean\Contracts\Customers\Domain\Model;
 
-use Clean\Contracts\Foundation\Persistence\Entity;
-
-interface CustomerFactory extends Entity
+interface CustomerFactory
 {
     public function create(array $values): Customer;
 }

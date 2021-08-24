@@ -2,17 +2,19 @@
 
 namespace Clean\Foundation\Persistence;
 
+use Clean\Contracts\Foundation\Persistence\Identity;
+use Clean\Contracts\Foundation\Persistence\IdentityFactory;
 use Illuminate\Support\Str;
 
-final class UuidIdentityFactory
+final class UuidIdentityFactory implements IdentityFactory
 {
-    public static function of(string $value)
+    public function of(string $value): Identity
     {
         return new UuidIdentity($value);
     }
 
-    public static function next()
+    public function next(): Identity
     {
-        return static::of(Str::uuid());;
+        return $this->of(Str::uuid());
     }
 }
