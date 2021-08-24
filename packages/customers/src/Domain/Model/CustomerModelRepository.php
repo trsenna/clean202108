@@ -4,8 +4,8 @@ namespace Clean\Customers\Domain\Model;
 
 use Clean\Contracts\Customers\Domain\Model\Customer;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
-use Clean\Contracts\Foundation\Persistence\Identity;
-use Clean\Foundation\Persistence\AbstractModelRepository;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
+use Clean\Foundation\Domain\Model\AbstractModelRepository;
 
 final class CustomerModelRepository extends AbstractModelRepository implements CustomerRepository
 {

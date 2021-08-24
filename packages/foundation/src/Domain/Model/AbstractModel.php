@@ -1,6 +1,6 @@
 <?php
 
-namespace Clean\Foundation\Persistence;
+namespace Clean\Foundation\Domain\Model;
 
 use Clean\Contracts\Foundation\Domain\Model\Entity;
 use Clean\Contracts\Foundation\Domain\Model\Identity;

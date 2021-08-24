@@ -3,9 +3,9 @@
 namespace Clean\Customers\Domain\Model;
 
 use Clean\Contracts\Customers\Domain\Model\Customer;
-use Clean\Contracts\Foundation\Persistence\IdentityFactory;
-use Clean\Foundation\Persistence\AbstractModel;
-use Clean\Foundation\Persistence\UuidIdentityFactory;
+use Clean\Contracts\Foundation\Domain\Model\IdentityFactory;
+use Clean\Foundation\Domain\Model\AbstractModel;
+use Clean\Foundation\Domain\Model\UuidIdentityFactory;
 
 final class CustomerModel extends AbstractModel implements Customer
 {
