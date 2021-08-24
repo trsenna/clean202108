@@ -1,8 +1,8 @@
 <?php
 
-namespace Clean\Customers\Application;
+namespace Clean\Events\Customers\Application;
 
-class CustomerEdited
+class CustomerStored
 {
     public string $id;
     public string $name;

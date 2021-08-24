@@ -2,7 +2,7 @@
 
 namespace Clean\Foundation\Persistence;
 
-use Clean\Contracts\Foundation\Persistence\Identity;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 

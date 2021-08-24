@@ -2,8 +2,8 @@
 
 namespace Clean\Foundation\Persistence;
 
-use Clean\Contracts\Foundation\Persistence\Entity;
-use Clean\Contracts\Foundation\Persistence\Identity;
+use Clean\Contracts\Foundation\Domain\Model\Entity;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractModel extends Model implements Entity

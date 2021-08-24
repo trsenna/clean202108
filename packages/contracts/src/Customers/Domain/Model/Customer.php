@@ -2,7 +2,7 @@
 
 namespace Clean\Contracts\Customers\Domain\Model;
 
-use Clean\Contracts\Foundation\Persistence\Entity;
+use Clean\Contracts\Foundation\Domain\Model\Entity;
 
 interface Customer extends Entity
 {

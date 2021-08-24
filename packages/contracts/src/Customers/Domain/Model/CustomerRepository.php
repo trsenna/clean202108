@@ -2,8 +2,8 @@
 
 namespace Clean\Contracts\Customers\Domain\Model;
 
-use Clean\Contracts\Foundation\Persistence\Identity;
-use Clean\Contracts\Foundation\Persistence\Repository;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
+use Clean\Contracts\Foundation\Domain\Model\Repository;
 
 interface CustomerRepository extends Repository
 {

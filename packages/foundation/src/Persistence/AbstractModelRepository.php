@@ -2,8 +2,8 @@
 
 namespace Clean\Foundation\Persistence;
 
-use Clean\Contracts\Foundation\Persistence\Entity;
-use Clean\Contracts\Foundation\Persistence\Repository;
+use Clean\Contracts\Foundation\Domain\Model\Entity;
+use Clean\Contracts\Foundation\Domain\Model\Repository;
 
 abstract class AbstractModelRepository implements Repository
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Clean\Customers\Application;
+namespace Clean\Events\Customers\Application;
 
-class CustomerDestroyed
+class CustomerEdited
 {
     public string $id;
     public string $name;

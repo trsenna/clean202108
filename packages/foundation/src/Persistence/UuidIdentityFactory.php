@@ -2,8 +2,8 @@
 
 namespace Clean\Foundation\Persistence;
 
-use Clean\Contracts\Foundation\Persistence\Identity;
-use Clean\Contracts\Foundation\Persistence\IdentityFactory;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
+use Clean\Contracts\Foundation\Domain\Model\IdentityFactory;
 use Illuminate\Support\Str;
 
 final class UuidIdentityFactory implements IdentityFactory
