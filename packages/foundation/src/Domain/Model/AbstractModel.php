@@ -16,11 +16,6 @@ abstract class AbstractModel extends Model implements Entity
         $this->id = $identity->value();
     }
 
-    public function identity(): Identity
-    {
-        return $this->identityFactory()->of($this->id);
-    }
-
     public function eloquent(): Model
     {
         return $this;

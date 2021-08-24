@@ -10,8 +10,7 @@ final class CustomerModelFactory implements CustomerFactory
     public function create(array $values): Customer
     {
         $customerModel = new CustomerModel();
-        $customerModelIdentityFactory = $customerModel->identityFactory();
-        $customerModel->setIdentity($customerModelIdentityFactory->next());
+        $customerModel->setIdentity(CustomerId::factory()->next());
 
         $customerModel->fill([
             'name' => strval($values['name']),

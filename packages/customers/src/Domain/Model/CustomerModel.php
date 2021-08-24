@@ -3,9 +3,8 @@
 namespace Clean\Customers\Domain\Model;
 
 use Clean\Contracts\Customers\Domain\Model\Customer;
-use Clean\Contracts\Foundation\Domain\Model\IdentityFactory;
+use Clean\Contracts\Foundation\Domain\Model\Identity;
 use Clean\Foundation\Domain\Model\AbstractModel;
-use Clean\Foundation\Domain\Model\UuidIdentityFactory;
 
 final class CustomerModel extends AbstractModel implements Customer
 {
@@ -13,9 +12,9 @@ final class CustomerModel extends AbstractModel implements Customer
 
     protected $fillable = ['name'];
 
-    public function identityFactory(): IdentityFactory
+    public function identity(): Identity
     {
-        return new UuidIdentityFactory();
+        return CustomerId::factory()->of($this->id);
     }
 
     public function getName(): string
