@@ -3,26 +3,22 @@
 namespace Clean\Customers\Application\Commands\CustomerEdit;
 
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
-use Clean\Contracts\Foundation\Domain\Model\IdentityFactory;
+use Clean\Customers\Domain\Model\CustomerId;
 use Clean\Events\Customers\Application\CustomerEdited;
 
 class CustomerEditHandler implements CustomerEditHandlerInterface
 {
-    private IdentityFactory $customerIdentityFactory;
     private CustomerRepository $customerRepository;
 
-    public function __construct(
-        IdentityFactory $customerIdentityFactory,
-        CustomerRepository $customerRepository
-    ) {
-        $this->customerIdentityFactory = $customerIdentityFactory;
+    public function __construct(CustomerRepository $customerRepository)
+    {
         $this->customerRepository = $customerRepository;
     }
 
     public function execute(CustomerEdit $command): CustomerEditResponse
     {
-        $customerIdentity = $this->customerIdentityFactory->of($command->id);
-        $customer = $this->customerRepository->ofIdentity($customerIdentity);
+        $customerId = CustomerId::factory()->of($command->id);
+        $customer = $this->customerRepository->ofIdentity($customerId);
 
         $customer->eloquent()->fill([
             'name' => $command->name,

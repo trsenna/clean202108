@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->app->bind(IdentityFactory::class, UuidIdentityFactory::class);
         $this->app->bind(CustomerFactory::class, CustomerModelFactory::class);
         $this->app->bind(CustomerRepository::class, CustomerModelRepository::class);
 
