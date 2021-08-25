@@ -6,7 +6,7 @@ use Clean\Contracts\Foundation\Domain\Model\Identity;
 
 abstract class AbstractIdentity implements Identity
 {
-    private string $value;
+    protected string $value;
 
     public function __construct(string $value)
     {
