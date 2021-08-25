@@ -2,14 +2,14 @@
 
 namespace Clean\Customers;
 
+use Clean\Contracts\Customers\Application\Commands\CustomerDestroyHandler as CustomerDestroyHandlerContract;
+use Clean\Contracts\Customers\Application\Commands\CustomerEditHandler as CustomerEditHandlerContract;
+use Clean\Contracts\Customers\Application\Commands\CustomerStoreHandler as CustomerStoreHandlerContract;
 use Clean\Contracts\Customers\Domain\Model\CustomerFactory;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
-use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandler;
-use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface;
-use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandler;
-use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandlerInterface;
-use Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandler;
-use Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandlerInterface;
+use Clean\Customers\Application\Commands\CustomerDestroyHandler;
+use Clean\Customers\Application\Commands\CustomerEditHandler;
+use Clean\Customers\Application\Commands\CustomerStoreHandler;
 use Clean\Customers\Application\Queries\CustomerListHandler;
 use Clean\Customers\Application\Queries\CustomerListHandlerInterface;
 use Clean\Customers\Domain\Model\CustomerModelFactory;
@@ -25,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
 
         call_user_func(function () {
             // register command handlers
-            $this->app->bind(CustomerDestroyHandlerInterface::class, CustomerDestroyHandler::class);
-            $this->app->bind(CustomerEditHandlerInterface::class, CustomerEditHandler::class);
-            $this->app->bind(CustomerStoreHandlerInterface::class, CustomerStoreHandler::class);
+            $this->app->bind(CustomerDestroyHandlerContract::class, CustomerDestroyHandler::class);
+            $this->app->bind(CustomerEditHandlerContract::class, CustomerEditHandler::class);
+            $this->app->bind(CustomerStoreHandlerContract::class, CustomerStoreHandler::class);
         });
 
         call_user_func(function () {

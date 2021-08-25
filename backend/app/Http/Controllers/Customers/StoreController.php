@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers\Customers;
 
-use Clean\Customers\Application\Commands\CustomerStore\CustomerStore;
-use Clean\Customers\Application\Commands\CustomerStore\CustomerStoreHandlerInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerStoreRequest;
+use Clean\Contracts\Customers\Application\Commands\CustomerStoreHandler;
 
 class StoreController extends Controller
 {
-    private CustomerStoreHandlerInterface $customerStoreHandler;
+    private CustomerStoreHandler $customerStoreHandler;
 
-    public function __construct(CustomerStoreHandlerInterface $customerStoreHandler)
+    public function __construct(CustomerStoreHandler $customerStoreHandler)
     {
         $this->customerStoreHandler = $customerStoreHandler;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(CustomerStoreRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-        ]);
-
-        $customerStore = new CustomerStore($validated['name']);
-        $customerStoreResponse = $this->customerStoreHandler->execute($customerStore);
+        $response = $this->customerStoreHandler->execute($request);
 
         return response()->json([
             'status' => 'success',
-            'data' => $customerStoreResponse,
+            'data' => $response,
         ]);
     }
 }

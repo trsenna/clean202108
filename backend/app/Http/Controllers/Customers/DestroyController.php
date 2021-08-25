@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Customers;
 
-use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroy;
-use Clean\Customers\Application\Commands\CustomerDestroy\CustomerDestroyHandlerInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerDestroyRequest;
+use Clean\Contracts\Customers\Application\Commands\CustomerDestroyHandler;
 
 class DestroyController extends Controller
 {
-    private CustomerDestroyHandlerInterface $customerDestroyHandler;
+    private CustomerDestroyHandler $customerDestroyHandler;
 
-    public function __construct(CustomerDestroyHandlerInterface $customerDestroyHandler)
+    public function __construct(CustomerDestroyHandler $customerDestroyHandler)
     {
         $this->customerDestroyHandler = $customerDestroyHandler;
     }
 
-    public function __invoke(string $id)
+    public function __invoke(CustomerDestroyRequest $request)
     {
-        $customerDestroy = new CustomerDestroy($id);
-        $this->customerDestroyHandler->execute($customerDestroy);
+        $this->customerDestroyHandler->execute($request);
 
         return response()->json([
             'status' => 'success',

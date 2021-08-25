@@ -1,13 +1,16 @@
 <?php
 
-namespace Clean\Customers\Application\Commands\CustomerStore;
+namespace Clean\Customers\Application\Commands;
 
+use Clean\Contracts\Customers\Application\Commands\CustomerStore;
+use Clean\Contracts\Customers\Application\Commands\CustomerStoreHandler as CustomerStoreHandlerContract;
 use Clean\Contracts\Customers\Domain\Model\CustomerFactory;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
 use Clean\Contracts\Events\Application\Dispatcher;
 use Clean\Events\Customers\Application\CustomerStored;
+use stdClass;
 
-class CustomerStoreHandler implements CustomerStoreHandlerInterface
+class CustomerStoreHandler implements CustomerStoreHandlerContract
 {
     private CustomerFactory $customerFactory;
     private CustomerRepository $customerRepository;
@@ -23,10 +26,10 @@ class CustomerStoreHandler implements CustomerStoreHandlerInterface
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(CustomerStore $customerStore): CustomerStoreResponse
+    public function execute(CustomerStore $command): stdClass
     {
         $customer = $this->customerFactory->create([
-            'name' => $customerStore->name
+            'name' => $command->getName(),
         ]);
 
         $this->customerRepository->add($customer);
@@ -35,9 +38,10 @@ class CustomerStoreHandler implements CustomerStoreHandlerInterface
             new CustomerStored($customer->identity()->value(), $customer->getName())
         );
 
-        return new CustomerStoreResponse(
-            $customer->identity()->value(),
-            $customer->getName()
-        );
+        $response = new stdClass;
+        $response->id = $customer->identity()->value();
+        $response->name = $customer->getName();
+
+        return $response;
     }
 }

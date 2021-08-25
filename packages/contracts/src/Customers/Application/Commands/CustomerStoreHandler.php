@@ -2,7 +2,9 @@
 
 namespace Clean\Contracts\Customers\Application\Commands;
 
-interface CustomerEditHandler
+use stdClass;
+
+interface CustomerStoreHandler
 {
-    public function execute(CustomerStore $command): CustomerStoreResponse;
+    public function execute(CustomerStore $command): stdClass;
 }

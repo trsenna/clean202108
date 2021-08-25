@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers\Customers;
 
-use Clean\Customers\Application\Commands\CustomerEdit\CustomerEdit;
-use Clean\Customers\Application\Commands\CustomerEdit\CustomerEditHandlerInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerEditRequest;
+use Clean\Contracts\Customers\Application\Commands\CustomerEditHandler;
 
 class EditController extends Controller
 {
-    private CustomerEditHandlerInterface $customerEditHandler;
+    private CustomerEditHandler $customerEditHandler;
 
-    public function __construct(CustomerEditHandlerInterface $customerEditHandler)
+    public function __construct(CustomerEditHandler $customerEditHandler)
     {
         $this->customerEditHandler = $customerEditHandler;
     }
 
-    public function __invoke(Request $request, string $id)
+    public function __invoke(CustomerEditRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-        ]);
-
-        $customerEdit = new CustomerEdit($id, $validated['name']);
-        $customerEditResponse = $this->customerEditHandler->execute($customerEdit);
+        $response = $this->customerEditHandler->execute($request);
 
         return response()->json([
             'status' => 'success',
-            'data' => $customerEditResponse,
+            'data' => $response,
         ]);
     }
 }

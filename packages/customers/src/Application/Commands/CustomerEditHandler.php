@@ -1,13 +1,16 @@
 <?php
 
-namespace Clean\Customers\Application\Commands\CustomerEdit;
+namespace Clean\Customers\Application\Commands;
 
+use Clean\Contracts\Customers\Application\Commands\CustomerEdit;
+use Clean\Contracts\Customers\Application\Commands\CustomerEditHandler as CustomerEditHandlerContract;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
 use Clean\Contracts\Events\Application\Dispatcher;
 use Clean\Customers\Domain\Model\CustomerId;
 use Clean\Events\Customers\Application\CustomerEdited;
+use stdClass;
 
-class CustomerEditHandler implements CustomerEditHandlerInterface
+class CustomerEditHandler implements CustomerEditHandlerContract
 {
     private CustomerRepository $customerRepository;
     private Dispatcher $dispatcher;
@@ -20,13 +23,13 @@ class CustomerEditHandler implements CustomerEditHandlerInterface
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(CustomerEdit $command): CustomerEditResponse
+    public function execute(CustomerEdit $command): stdClass
     {
-        $customerId = CustomerId::factory()->of($command->id);
+        $customerId = CustomerId::factory()->of($command->getId());
         $customer = $this->customerRepository->ofIdentity($customerId);
 
         $customer->eloquent()->fill([
-            'name' => $command->name,
+            'name' => $command->getName(),
         ]);
 
         $this->customerRepository->merge($customer);
@@ -35,9 +38,10 @@ class CustomerEditHandler implements CustomerEditHandlerInterface
             new CustomerEdited($customer->identity()->value(), $customer->getName())
         );
 
-        return new CustomerEditResponse(
-            $customer->identity()->value(),
-            $customer->getName()
-        );
+        $response = new stdClass;
+        $response->id = $customer->identity()->value();
+        $response->name = $customer->getName();
+
+        return $response;
     }
 }
