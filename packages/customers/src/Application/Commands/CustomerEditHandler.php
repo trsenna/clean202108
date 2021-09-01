@@ -6,9 +6,10 @@ use Clean\Contracts\Customers\Application\Commands\CustomerEdit;
 use Clean\Contracts\Customers\Application\Commands\CustomerEditHandler as CustomerEditHandlerContract;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
 use Clean\Contracts\Events\Application\Dispatcher;
+use Clean\Contracts\Foundation\Application\Response;
 use Clean\Customers\Domain\Model\CustomerId;
 use Clean\Events\Customers\Application\CustomerEdited;
-use stdClass;
+use Clean\Foundation\Application\ResponseFactory;
 
 class CustomerEditHandler implements CustomerEditHandlerContract
 {
@@ -23,7 +24,7 @@ class CustomerEditHandler implements CustomerEditHandlerContract
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(CustomerEdit $command): stdClass
+    public function execute(CustomerEdit $command): Response
     {
         $customerId = CustomerId::factory()->of($command->getId());
         $customer = $this->customerRepository->ofIdentity($customerId);
@@ -38,10 +39,9 @@ class CustomerEditHandler implements CustomerEditHandlerContract
             new CustomerEdited($customer->identity()->value(), $customer->getName())
         );
 
-        $response = new stdClass;
-        $response->id = $customer->identity()->value();
-        $response->name = $customer->getName();
-
-        return $response;
+        return ResponseFactory::asObject([
+            'id' => $customer->identity()->value(),
+            'name' => $customer->getName(),
+        ]);
     }
 }

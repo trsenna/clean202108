@@ -7,8 +7,9 @@ use Clean\Contracts\Customers\Application\Commands\CustomerStoreHandler as Custo
 use Clean\Contracts\Customers\Domain\Model\CustomerFactory;
 use Clean\Contracts\Customers\Domain\Model\CustomerRepository;
 use Clean\Contracts\Events\Application\Dispatcher;
+use Clean\Contracts\Foundation\Application\Response;
 use Clean\Events\Customers\Application\CustomerStored;
-use stdClass;
+use Clean\Foundation\Application\ResponseFactory;
 
 class CustomerStoreHandler implements CustomerStoreHandlerContract
 {
@@ -26,7 +27,7 @@ class CustomerStoreHandler implements CustomerStoreHandlerContract
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(CustomerStore $command): stdClass
+    public function execute(CustomerStore $command): Response
     {
         $customer = $this->customerFactory->create([
             'name' => $command->getName(),
@@ -38,10 +39,9 @@ class CustomerStoreHandler implements CustomerStoreHandlerContract
             new CustomerStored($customer->identity()->value(), $customer->getName())
         );
 
-        $response = new stdClass;
-        $response->id = $customer->identity()->value();
-        $response->name = $customer->getName();
-
-        return $response;
+        return ResponseFactory::asObject([
+            'id' => $customer->identity()->value(),
+            'name' => $customer->getName(),
+        ]);
     }
 }

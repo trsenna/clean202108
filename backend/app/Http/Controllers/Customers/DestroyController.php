@@ -17,11 +17,11 @@ class DestroyController extends Controller
 
     public function __invoke(CustomerDestroyRequest $request)
     {
-        $this->customerDestroyHandler->execute($request);
+        $response = $this->customerDestroyHandler->execute($request);
 
         return response()->json([
             'status' => 'success',
-            'data' => null,
+            'data' => $response->data(),
         ]);
     }
 }
