@@ -14,11 +14,6 @@ class CustomerStoreRequest extends FormRequest implements CustomerStore
         ];
     }
 
-    public function getId(): string
-    {
-        return $this->request->get('id');
-    }
-
     public function getName(): string
     {
         return $this->request->get('name');
